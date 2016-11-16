@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    {% load static %}
+{% load bootstrap3 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+</head>
+<body>
+<div class="container">
+    <div class="col-lg-6">
+<form  Action="/search/">
+        {%  csrf_token %}
+{% bootstrap_form form_search %}
+        {% bootstrap_button button_type="submit"  button_class="primary" content="submit"%}
+
+
+        </form>
+Hello you here at home
+
+
+</form></div>
+</div>
+{{ details.name }} {{ details.category }} {{ details.character}}
+
+
+
+  <div class="list-group col-lg-6">
+{% for item in content %}
+
+<div class="list-group-item">{{ item.id}} {{ item.name }} {{ item.category }}</div>
+
+
+{% endfor %}
+      </div>
+
+
+
+<div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+            {% endif %}
+
+            <span class="current">
+                Page {{ page_obj.number }} of {{ paginator.num_pages }}.
+            </span>
+
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">next</a>
+            {% endif %}
+        </span>
+    </div>
+
+
+</body>
+</html>
